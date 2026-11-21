@@ -1,0 +1,385 @@
+{
+  "entities": {
+    "Project": {
+      "title": "Project",
+      "description": "A real estate development project managed by AL-Amaan Developers.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 140,
+          "description": "Display name of the real estate project."
+        },
+        "slug": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120,
+          "pattern": "^[a-z0-9]+(?:-[a-z0-9]+)*$",
+          "description": "URL-friendly unique slug."
+        },
+        "location": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 180,
+          "description": "Project city, corridor, or site location."
+        },
+        "category": {
+          "type": "string",
+          "enum": ["Residential & Commercial", "Residential", "Commercial", "Mixed-Use"],
+          "maxLength": 60,
+          "description": "Primary real estate category."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["Featured Development", "Upcoming", "Ongoing", "Planning Phase", "Sold Out"],
+          "maxLength": 60,
+          "description": "Current project status label."
+        },
+        "shortDescription": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 360,
+          "description": "Concise overview displayed on project cards."
+        },
+        "fullDescription": {
+          "type": "string",
+          "minLength": 20,
+          "maxLength": 6000,
+          "description": "Detailed narrative overview of the development."
+        },
+        "coverImage": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 1000,
+          "description": "URL or local asset path for the project cover image."
+        },
+        "galleryImages": {
+          "type": "array",
+          "description": "Up to 12 gallery image URLs for the project."
+        },
+        "amenities": {
+          "type": "array",
+          "description": "List of project features and amenities (up to 24 items)."
+        },
+        "plotSizes": {
+          "type": "array",
+          "description": "Available plot or unit size options (up to 16 items)."
+        },
+        "propertyCategories": {
+          "type": "array",
+          "description": "Residential and commercial category breakdowns (up to 8 items)."
+        },
+        "developmentHighlights": {
+          "type": "array",
+          "description": "Key development highlights (up to 12 items)."
+        },
+        "investmentInfo": {
+          "type": "string",
+          "maxLength": 3000,
+          "description": "Editable investment perspective and guidance notes."
+        },
+        "locationNote": {
+          "type": "string",
+          "maxLength": 1200,
+          "description": "Location accessibility details and map placeholder notes."
+        },
+        "mapEmbedUrl": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Optional embeddable map URL or coordinates label."
+        },
+        "faqs": {
+          "type": "array",
+          "description": "Project frequently asked questions (up to 12 items)."
+        },
+        "contactPhone": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "Project-specific contact phone number."
+        },
+        "contactEmail": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Project-specific contact email address."
+        },
+        "featured": {
+          "type": "boolean",
+          "description": "Whether the project is highlighted on the homepage."
+        },
+        "published": {
+          "type": "boolean",
+          "description": "Whether the project is publicly visible."
+        },
+        "displayOrder": {
+          "type": "number",
+          "description": "Sort priority for listing projects."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server creation timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server last-updated timestamp."
+        }
+      },
+      "required": [
+        "name",
+        "slug",
+        "location",
+        "category",
+        "status",
+        "shortDescription",
+        "fullDescription",
+        "coverImage",
+        "galleryImages",
+        "amenities",
+        "plotSizes",
+        "featured",
+        "published",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "Inquiry": {
+      "title": "Inquiry",
+      "description": "Customer contact or project inquiry submitted through the website.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 120,
+          "description": "Full name of the prospective buyer or investor."
+        },
+        "phone": {
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 40,
+          "description": "Contact phone or WhatsApp number."
+        },
+        "email": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 160,
+          "description": "Email address."
+        },
+        "interestedProject": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160,
+          "description": "Name of the project of interest."
+        },
+        "message": {
+          "type": "string",
+          "minLength": 5,
+          "maxLength": 3000,
+          "description": "Customer message or inquiry details."
+        },
+        "sourcePage": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Page path from which the inquiry was submitted."
+        },
+        "status": {
+          "type": "string",
+          "enum": ["new", "contacted", "completed", "archived"],
+          "maxLength": 30,
+          "description": "Admin workflow status."
+        },
+        "adminNotes": {
+          "type": "string",
+          "maxLength": 2000,
+          "description": "Internal follow-up notes for authorized admins."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server submission timestamp."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server last-updated timestamp."
+        }
+      },
+      "required": [
+        "name",
+        "phone",
+        "email",
+        "interestedProject",
+        "message",
+        "status",
+        "createdAt",
+        "updatedAt"
+      ]
+    },
+    "SiteContent": {
+      "title": "SiteContent",
+      "description": "Global company information, WhatsApp settings, editable statistics, and website editorial copy.",
+      "type": "object",
+      "properties": {
+        "companyName": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 100,
+          "description": "Brand name."
+        },
+        "companyLogoUrl": {
+          "type": "string",
+          "maxLength": 1000,
+          "description": "Optional custom company logo image URL."
+        },
+        "tagline": {
+          "type": "string",
+          "minLength": 2,
+          "maxLength": 160,
+          "description": "Primary brand tagline."
+        },
+        "heroHeadline": {
+          "type": "string",
+          "minLength": 4,
+          "maxLength": 160,
+          "description": "Homepage hero headline."
+        },
+        "heroSubtitle": {
+          "type": "string",
+          "minLength": 10,
+          "maxLength": 500,
+          "description": "Homepage hero supporting text."
+        },
+        "aboutPreviewTitle": {
+          "type": "string",
+          "maxLength": 180,
+          "description": "Homepage about section heading."
+        },
+        "aboutPreviewBody": {
+          "type": "string",
+          "maxLength": 2000,
+          "description": "Homepage about preview copy."
+        },
+        "aboutFullStory": {
+          "type": "string",
+          "maxLength": 6000,
+          "description": "Full About Us page company story."
+        },
+        "whatsappNumber": {
+          "type": "string",
+          "minLength": 6,
+          "maxLength": 30,
+          "description": "Configurable WhatsApp business number with country code."
+        },
+        "contactPhone": {
+          "type": "string",
+          "maxLength": 40,
+          "description": "Primary office telephone number."
+        },
+        "contactEmail": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Primary corporate email address."
+        },
+        "officeAddress": {
+          "type": "string",
+          "maxLength": 400,
+          "description": "Corporate office address."
+        },
+        "officeHours": {
+          "type": "string",
+          "maxLength": 160,
+          "description": "Office visiting hours."
+        },
+        "socialLinks": {
+          "type": "object",
+          "description": "Social media profile URLs."
+        },
+        "stats": {
+          "type": "array",
+          "description": "Editable statistics placeholders (up to 6 items)."
+        },
+        "testimonials": {
+          "type": "array",
+          "description": "Editable sample testimonial items (up to 6 items)."
+        },
+        "ctaHeadline": {
+          "type": "string",
+          "maxLength": 200,
+          "description": "Call to action banner headline."
+        },
+        "ctaSubtext": {
+          "type": "string",
+          "maxLength": 400,
+          "description": "Call to action supporting text."
+        },
+        "updatedAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Server timestamp of last site content update."
+        }
+      },
+      "required": [
+        "companyName",
+        "tagline",
+        "heroHeadline",
+        "heroSubtitle",
+        "whatsappNumber",
+        "contactPhone",
+        "contactEmail",
+        "officeAddress",
+        "stats",
+        "testimonials",
+        "updatedAt"
+      ]
+    },
+    "AdminUser": {
+      "title": "AdminUser",
+      "description": "Authorized administrator directory record.",
+      "type": "object",
+      "properties": {
+        "email": {
+          "type": "string",
+          "maxLength": 160,
+          "description": "Verified Google account email."
+        },
+        "displayName": {
+          "type": "string",
+          "maxLength": 120,
+          "description": "Administrator display name."
+        },
+        "role": {
+          "type": "string",
+          "enum": ["admin"],
+          "maxLength": 30,
+          "description": "Role identifier."
+        },
+        "createdAt": {
+          "type": "string",
+          "format": "date-time",
+          "description": "Timestamp when admin record was created."
+        }
+      },
+      "required": ["email", "role", "createdAt"]
+    }
+  },
+  "firestore": {
+    "/projects/{projectId}": {
+      "schema": { "$ref": "#/entities/Project" },
+      "description": "Real estate projects collection. Public visitors may read published projects; admins manage all projects."
+    },
+    "/inquiries/{inquiryId}": {
+      "schema": { "$ref": "#/entities/Inquiry" },
+      "description": "Customer inquiries containing PII. Anyone may create with strict validation; only admins may read, update, or delete."
+    },
+    "/site_content/{contentId}": {
+      "schema": { "$ref": "#/entities/SiteContent" },
+      "description": "Publicly readable website copy, WhatsApp configuration, and editable company info managed by admins."
+    },
+    "/admins/{adminId}": {
+      "schema": { "$ref": "#/entities/AdminUser" },
+      "description": "Authorized admin accounts keyed by Firebase Auth UID."
+    }
+  }
+}
